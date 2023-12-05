@@ -1,0 +1,5 @@
+0 tile map:ground, paletto:ombra, paletto:paletto_sotto
+
+1 player
+
+2 effetti, paletto:paletto_sopra, UI, tile map:muri

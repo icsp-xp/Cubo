@@ -1,6 +1,7 @@
 extends Area2D # Player
 
 signal danneggiato(scudo_rimanente: int)
+signal perso()
 
 @export_category("Movimento")
 @export var dimensione_celle : int = 64
@@ -95,14 +96,16 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("danneggia"):
 		if scudo > 0:
 			scudo -= 1
-			emit_signal("danneggiato", scudo)
-			
-			# -invulnerabilità player-
-			collision_shape_2d.call_deferred("set_disabled", true)
-			# TODO play scudo in
-			await get_tree().create_timer(tempo_invulnerabilita).timeout
-			# TODO play scudo out
-			collision_shape_2d.call_deferred("set_disabled", false)
 		else:
-			print("perso")
+			emit_signal("perso")
+			
+		emit_signal("danneggiato", scudo)
+		
+		# -invulnerabilità player-
+		collision_shape_2d.call_deferred("set_disabled", true)
+		# TODO play scudo in
+		await get_tree().create_timer(tempo_invulnerabilita).timeout
+		# TODO play scudo out
+		collision_shape_2d.call_deferred("set_disabled", false)
+		
 

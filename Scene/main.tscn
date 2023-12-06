@@ -1,11 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://ctb88ivhf3ib7"]
+[gd_scene load_steps=21 format=3 uid="uid://ctb88ivhf3ib7"]
 
+[ext_resource type="Script" path="res://Scene/main.gd" id="1_446vj"]
 [ext_resource type="Texture2D" uid="uid://bwpechusesgky" path="res://Assets/GroundTile.png" id="1_lngox"]
 [ext_resource type="Texture2D" uid="uid://d4fku0j1mqfiy" path="res://Assets/Muro.png" id="2_6u52h"]
 [ext_resource type="PackedScene" uid="uid://d288xrkdmpbre" path="res://Scene/player.tscn" id="2_op1tl"]
 [ext_resource type="PackedScene" uid="uid://ceedvsppgb5cr" path="res://Scene/paletti.tscn" id="4_ghi1e"]
 [ext_resource type="Script" path="res://Scene/Effetti.gd" id="5_f8k00"]
+[ext_resource type="Script" path="res://Scene/UI.gd" id="6_oobqf"]
 [ext_resource type="Script" path="res://Scene/Camera.gd" id="6_x3sab"]
+[ext_resource type="Texture2D" uid="uid://btomq8x00mwet" path="res://Assets/Scudo.png" id="7_y5l2y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uq1cs"]
 resource_name = "Ground"
@@ -108,7 +111,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.2),
 "transitions": PackedFloat32Array(0.5, 2, 1),
 "update": 0,
-"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.509804), Color(1, 0, 0, 0)]
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.392157), Color(1, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_xm224"]
@@ -159,7 +162,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
-"transitions": PackedFloat32Array(0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 1),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 2), Vector2(2, 2), Vector2(0, -1), Vector2(-2, -2), Vector2(-1, 0), Vector2(0, 0)]
 }
@@ -171,6 +174,7 @@ _data = {
 }
 
 [node name="Main" type="Node"]
+script = ExtResource("1_446vj")
 
 [node name="Node2D" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -196,6 +200,15 @@ dimensione_celle = 80
 
 [node name="Paletto" parent="Node2D" instance=ExtResource("4_ghi1e")]
 position = Vector2(520, 278)
+
+[node name="Paletto3" parent="Node2D" instance=ExtResource("4_ghi1e")]
+position = Vector2(520, 438)
+
+[node name="Paletto4" parent="Node2D" instance=ExtResource("4_ghi1e")]
+position = Vector2(520, 518)
+
+[node name="Paletto6" parent="Node2D" instance=ExtResource("4_ghi1e")]
+position = Vector2(520, 198)
 
 [node name="Effetti" type="Control" parent="."]
 z_index = 2
@@ -232,8 +245,40 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_oobqf")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_y5l2y")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="UI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_y5l2y")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="UI/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_y5l2y")
+stretch_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -247,4 +292,6 @@ libraries = {
 }
 
 [connection signal="danneggiato" from="Node2D/Player" to="Effetti" method="_on_player_danneggiato"]
+[connection signal="danneggiato" from="Node2D/Player" to="UI" method="_on_player_danneggiato"]
 [connection signal="danneggiato" from="Node2D/Player" to="Camera2D" method="_on_player_danneggiato"]
+[connection signal="perso" from="Node2D/Player" to="." method="_on_player_perso"]

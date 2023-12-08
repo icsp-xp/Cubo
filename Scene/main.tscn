@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://ctb88ivhf3ib7"]
 
 [ext_resource type="Script" path="res://Script/main.gd" id="1_nqtjs"]
-[ext_resource type="PackedScene" uid="uid://dlpia5qp4nvhe" path="res://Scene/base_level.tscn" id="2_hg8j5"]
+[ext_resource type="PackedScene" uid="uid://nw2g0d0skgai" path="res://Scene/base_level.tscn" id="2_hg8j5"]
 [ext_resource type="Script" path="res://Script/Effetti.gd" id="6_cp6rj"]
 [ext_resource type="Script" path="res://Script/UI.gd" id="7_lchb2"]
 [ext_resource type="Texture2D" uid="uid://btomq8x00mwet" path="res://Assets/Scudo.png" id="7_y5l2y"]

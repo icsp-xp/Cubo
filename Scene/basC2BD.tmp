@@ -8,6 +8,14 @@
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_0g10e")
+struttura_segnali = {
+"Player": {
+"/root/Main": [["perso", "_on_player_perso"]],
+"/root/Main/Camera2D": [["danneggiato", "_on_player_danneggiato"]],
+"/root/Main/Effetti": [["danneggiato", "_on_player_danneggiato"]],
+"/root/Main/UI": [["danneggiato", "_on_player_danneggiato"], ["perso", "_on_player_perso"]]
+}
+}
 
 [node name="GestioneSegnali" type="Node" parent="."]
 script = ExtResource("2_da8wf")

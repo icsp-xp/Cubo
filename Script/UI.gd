@@ -1,6 +1,7 @@
 extends Control #UI
 
 @onready var h_box_container = $MarginContainer/HBoxContainer as HBoxContainer
+@onready var transition_menu = $Menu/TransitionMenu as AnimationPlayer
 
 var numero_icone_scudo : int
 
@@ -16,3 +17,7 @@ func _on_player_danneggiato(scudo_rimanente: int) -> void:
 		# cambiare texture invece di fare scomparire
 		# fare una scene apposita per le immagini dello scudo in modo da rendere 
 		# più semplice la gestione
+
+
+func _on_player_perso() -> void:
+	transition_menu.play("MostraMenu")

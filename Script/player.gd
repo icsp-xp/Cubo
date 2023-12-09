@@ -4,8 +4,8 @@ signal danneggiato(scudo_rimanente : int)
 signal perso()
 
 @export_category("Movimento")
-@export var dimensione_celle : int = 64
-@export var tempo_spostamento : float = 0.5
+@export var dimensione_celle : int = 80
+@export var tempo_spostamento : float = 0.1
 @export var angolo_rotazione : int = 90
 @export var tempo_rotazione : float = 0.1
 
@@ -17,7 +17,7 @@ signal perso()
 @onready var indicatore_direzione = $AnimatedSprite/Direction as PointLight2D
 # controlla se avvengono collisioni con muri o oggetti non attraversabili
 @onready var area_controllo = $Area2D as Area2D
-@onready var collision_shape_2d = $CollisionShape2D as CollisionShape2D
+@onready var collision_shape_player = $CollisionShape2D as CollisionShape2D
 
 var direzioni : Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 var indice_direzione : int = 0
@@ -103,15 +103,15 @@ func _on_area_entered(area: Area2D) -> void:
 			
 		emit_signal("danneggiato", scudo)
 		
-		#TODO
-		#durante l'invulnerabilità non è possibile collezionare chiavi. Aggiustare
-		
-		# -invulnerabilità player-
-		collision_shape_2d.call_deferred("set_disabled", true)
+		# invulnerabilità player: sposta il collision_mask a 2 per non vedere la 
+		# collisione del paletto che ha collision_layer in 1, ma vede la collisione della
+		# chiave che ha collision_layer in 1 e 2
+		collision_mask = 2
 		# TODO play scudo in
 		await get_tree().create_timer(tempo_invulnerabilita).timeout
 		# TODO play scudo out
-		collision_shape_2d.call_deferred("set_disabled", false)
+		collision_mask = 1
+		
 	elif area.is_in_group("chiave"):
 		var chiave : Chiave = area
 		

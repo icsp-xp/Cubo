@@ -98,10 +98,13 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		scudo -= paletto.danno
 		
-		if scudo <= 0:
+		if scudo < 0:
 			emit_signal("perso")
 			
 		emit_signal("danneggiato", scudo)
+		
+		#TODO
+		#durante l'invulnerabilità non è possibile collezionare chiavi. Aggiustare
 		
 		# -invulnerabilità player-
 		collision_shape_2d.call_deferred("set_disabled", true)

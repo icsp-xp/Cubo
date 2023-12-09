@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://bselgyt6uq64q"]
+
+[ext_resource type="Script" path="res://Script/chiave.gd" id="1_cjy3c"]
+[ext_resource type="Texture2D" uid="uid://boh4pqrqrgdrm" path="res://Assets/Chiave/Chiave.png" id="1_qimpt"]
+[ext_resource type="Texture2D" uid="uid://ctf4say0xxf5k" path="res://Assets/Chiave/BaglioreChiave.png" id="2_4gctr"]
+[ext_resource type="Texture2D" uid="uid://52iqcvhfchp0" path="res://Assets/Chiave/OmbraChiave.png" id="3_45u0i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qx0p"]
+
+[sub_resource type="Animation" id="Animation_uvwar"]
+resource_name = "levita"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, -1.5, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3), Vector2(0, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Bagliore:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.5),
+"transitions": PackedFloat32Array(2, 1, 2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.745098), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 0.745098)]
+}
+
+[sub_resource type="Animation" id="Animation_4cgah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Bagliore:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.745098)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mgty0"]
+_data = {
+"RESET": SubResource("Animation_4cgah"),
+"levita": SubResource("Animation_uvwar")
+}
+
+[node name="Chiave" type="Area2D" groups=["chiave"]]
+script = ExtResource("1_cjy3c")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3qx0p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qimpt")
+
+[node name="Bagliore" type="Sprite2D" parent="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.745098)
+position = Vector2(5, -6)
+rotation = 0.280998
+texture = ExtResource("2_4gctr")
+
+[node name="Ombra" type="Sprite2D" parent="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.588235)
+show_behind_parent = true
+texture = ExtResource("3_45u0i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "levita"
+libraries = {
+"": SubResource("AnimationLibrary_mgty0")
+}

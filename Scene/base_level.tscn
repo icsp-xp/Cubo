@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://nw2g0d0skgai"]
+[gd_scene load_steps=7 format=3 uid="uid://nw2g0d0skgai"]
 
 [ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_0g10e"]
 [ext_resource type="Script" path="res://Script/GestoioneSegnali.gd" id="2_da8wf"]
 [ext_resource type="TileSet" uid="uid://b3oplcqw8uw7r" path="res://Resource/TileMap.tres" id="2_htlwm"]
 [ext_resource type="PackedScene" uid="uid://d288xrkdmpbre" path="res://Scene/player.tscn" id="3_4oniw"]
+[ext_resource type="PackedScene" uid="uid://bselgyt6uq64q" path="res://Scene/chiave.tscn" id="3_vnjn2"]
 [ext_resource type="PackedScene" uid="uid://ceedvsppgb5cr" path="res://Scene/paletti.tscn" id="4_xdrjb"]
 
 [node name="BaseLevel" type="Node2D"]
@@ -20,6 +21,9 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 1, 2, 0, 0, 3, 0, 1, 4, 0, 0
 [node name="Player" parent="." instance=ExtResource("3_4oniw")]
 position = Vector2(120, 118)
 dimensione_celle = 80
+
+[node name="Chiave" parent="." instance=ExtResource("3_vnjn2")]
+position = Vector2(520, 278)
 
 [node name="Paletto" parent="." instance=ExtResource("4_xdrjb")]
 position = Vector2(440, 198)

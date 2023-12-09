@@ -42,7 +42,6 @@ func connetti_segnali() -> bool:
 			for segnali in segnali_da_connttere[nodo_partenza_path][nodo_arrivo_path]:
 				var nodo_partenza = get_node(nodo_partenza_path)
 				var nodo_arrivo = get_node(nodo_arrivo_path)
-				printt(nodo_partenza, nodo_arrivo)
 				
 				if nodo_partenza == null or nodo_arrivo == null:
 					print_debug("nodo partenza o nodo arrivo nulli")

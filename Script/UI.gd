@@ -11,12 +11,11 @@ func _ready() -> void:
 
 
 func _on_player_danneggiato(scudo_rimanente: int) -> void:
-	if numero_icone_scudo > scudo_rimanente and h_box_container.get_child(scudo_rimanente).is_visible():
-		h_box_container.get_child(scudo_rimanente).set_visible(false)
-		
-		# cambiare texture invece di fare scomparire
-		# fare una scene apposita per le immagini dello scudo in modo da rendere 
-		# più semplice la gestione
+	if scudo_rimanente >= 0:
+		for i in range(scudo_rimanente, numero_icone_scudo):
+			h_box_container.get_child(i).set_visible(false)
+	else:
+		h_box_container.set_visible(false)
 
 
 func _on_player_perso() -> void:

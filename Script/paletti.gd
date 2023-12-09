@@ -1,8 +1,13 @@
 extends Area2D #Paletti
 
+class_name Paletto
+
+@export_category("Parametri Animazione")
 @export var tempo_di_attivazione : float = 1.0
 @export var tempo_da_attivato : float = 1.0
 @export var tempo_da_disattivato : float = 1.0
+
+@export_category("Propietà")
 @export var danno : int = 1
 
 @onready var animation_player = $AnimationPlayer as AnimationPlayer

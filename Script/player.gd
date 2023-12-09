@@ -1,6 +1,6 @@
 extends Area2D # Player
 
-signal danneggiato(scudo_rimanente: int)
+signal danneggiato(scudo_rimanente : int)
 signal perso()
 
 @export_category("Movimento")
@@ -94,9 +94,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("danneggia"):
-		if scudo > 0:
-			scudo -= 1
-		else:
+		var paletto : Paletto = area
+		
+		scudo -= paletto.danno
+		
+		if scudo <= 0:
 			emit_signal("perso")
 			
 		emit_signal("danneggiato", scudo)
@@ -107,5 +109,8 @@ func _on_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(tempo_invulnerabilita).timeout
 		# TODO play scudo out
 		collision_shape_2d.call_deferred("set_disabled", false)
+	elif area.is_in_group("chiave"):
+		var chiave : Chiave = area
 		
+		chiave.prendi_chiave()
 

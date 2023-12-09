@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://ctb88ivhf3ib7"]
+[gd_scene load_steps=17 format=3 uid="uid://ctb88ivhf3ib7"]
 
 [ext_resource type="Script" path="res://Script/main.gd" id="1_nqtjs"]
 [ext_resource type="PackedScene" uid="uid://nw2g0d0skgai" path="res://Scene/base_level.tscn" id="2_hg8j5"]
 [ext_resource type="Script" path="res://Script/Effetti.gd" id="6_cp6rj"]
+[ext_resource type="Texture2D" uid="uid://boh4pqrqrgdrm" path="res://Assets/Chiave/Chiave.png" id="6_wq15u"]
 [ext_resource type="Script" path="res://Script/UI.gd" id="7_lchb2"]
 [ext_resource type="Texture2D" uid="uid://btomq8x00mwet" path="res://Assets/Scudo.png" id="7_y5l2y"]
 [ext_resource type="Script" path="res://Script/Camera.gd" id="9_0hdf0"]
@@ -169,36 +170,58 @@ script = ExtResource("7_lchb2")
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="MarginContainerScudi" type="MarginContainer" parent="UI"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-offset_bottom = 68.0
-grow_horizontal = 2
+offset_left = -225.0
+offset_bottom = 72.0
+grow_horizontal = 0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainerScudi"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/MarginContainerScudi/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("7_y5l2y")
 stretch_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="UI/MarginContainer/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="UI/MarginContainerScudi/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("7_y5l2y")
 stretch_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="UI/MarginContainer/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="UI/MarginContainerScudi/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("7_y5l2y")
 stretch_mode = 2
+
+[node name="MarginContainerChiavi" type="MarginContainer" parent="UI"]
+layout_mode = 1
+offset_right = 79.0
+offset_bottom = 48.0
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainerChiavi"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="IconChiave" type="TextureRect" parent="UI/MarginContainerChiavi/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_wq15u")
+stretch_mode = 5
+
+[node name="NumChiavi" type="Label" parent="UI/MarginContainerChiavi/HBoxContainer"]
+layout_mode = 2
+text = "0"
 
 [node name="Menu" type="ColorRect" parent="UI"]
 light_mask = 2

@@ -20,10 +20,14 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 1, 2, 0, 0, 3, 0, 1, 4, 0, 0
 
 [node name="Player" parent="." instance=ExtResource("3_4oniw")]
 position = Vector2(120, 118)
-dimensione_celle = 80
-
-[node name="Chiave" parent="." instance=ExtResource("3_vnjn2")]
-position = Vector2(520, 278)
 
 [node name="Paletto" parent="." instance=ExtResource("4_xdrjb")]
 position = Vector2(440, 198)
+
+[node name="ContenitoreChiavi" type="Node" parent="."]
+
+[node name="Chiave" parent="ContenitoreChiavi" instance=ExtResource("3_vnjn2")]
+position = Vector2(520, 278)
+
+[node name="Chiave2" parent="ContenitoreChiavi" instance=ExtResource("3_vnjn2")]
+position = Vector2(200, 358)

@@ -2,6 +2,7 @@ extends Area2D # Player
 
 signal danneggiato(scudo_rimanente : int)
 signal perso()
+signal collezionata_chiave()
 
 @export_category("Movimento")
 @export var dimensione_celle : int = 80
@@ -115,5 +116,6 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area.is_in_group("chiave"):
 		var chiave : Chiave = area
 		
+		emit_signal("collezionata_chiave")
 		chiave.prendi_chiave()
 

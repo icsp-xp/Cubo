@@ -2,9 +2,8 @@ extends Area2D # Player
 
 signal danneggiato()
 signal perso()
-
 signal presa_chiave()
-signal aggiorna_ui_scudo()
+
 
 @export_category("Movimento")
 @export var dimensione_celle : int = 80
@@ -16,6 +15,7 @@ signal aggiorna_ui_scudo()
 @export var numero_di_scudi : int = 3
 @export var tempo_invulnerabilita : float = 2.0
 
+
 @onready var animated_sprite = $AnimatedSprite as AnimatedSprite2D
 @onready var indicatore_direzione = $AnimatedSprite/Direction as PointLight2D
 # controlla se avvengono collisioni con muri o oggetti non attraversabili
@@ -23,6 +23,7 @@ signal aggiorna_ui_scudo()
 @onready var collision_shape_player = $CollisionShape2D as CollisionShape2D
 
 @onready var uscita = $"../Uscita" as Node2D
+
 
 var direzioni : Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 var indice_direzione : int = 0
@@ -110,7 +111,6 @@ func _on_area_entered(area: Area2D) -> void:
 			ScriptGlobale.numero_corrente_di_scudi = 0
 			emit_signal("perso")
 			
-		emit_signal("aggiorna_ui_scudo")
 		emit_signal("danneggiato")
 		
 		# invulnerabilità player: sposta il collision_mask a 2 per non vedere la 

@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://ctb88ivhf3ib7"]
+
+[ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_vrreg"]
+[ext_resource type="TileSet" uid="uid://b3oplcqw8uw7r" path="res://Resource/TileMap.tres" id="2_wbhhh"]
+[ext_resource type="PackedScene" uid="uid://d288xrkdmpbre" path="res://Scene/Player.tscn" id="3_oentp"]
+[ext_resource type="PackedScene" uid="uid://ceedvsppgb5cr" path="res://Scene/Paletti.tscn" id="4_cpf6r"]
+[ext_resource type="PackedScene" uid="uid://bselgyt6uq64q" path="res://Scene/Chiave.tscn" id="5_p6rt8"]
+[ext_resource type="Script" path="res://Script/Uscita.gd" id="6_wkreh"]
+[ext_resource type="PackedScene" uid="uid://b0457tdkr07ah" path="res://Scene/Effetti.tscn" id="8_siakl"]
+[ext_resource type="PackedScene" uid="uid://dx7jgkuntpghv" path="res://Scene/UI.tscn" id="9_sab8k"]
+[ext_resource type="Script" path="res://Script/Camera.gd" id="11_6pkct"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqga7"]
+size = Vector2(80, 650)
+
+[sub_resource type="Animation" id="Animation_ci25n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_smndp"]
+resource_name = "shakeCamera"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.14, 0.19, 0.25, 0.3),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(2, 2), Vector2(0, -1), Vector2(-2, -2), Vector2(-1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2c2u5"]
+_data = {
+"RESET": SubResource("Animation_ci25n"),
+"shakeCamera": SubResource("Animation_smndp")
+}
+
+[node name="BaseLivello" type="Node"]
+process_mode = 1
+script = ExtResource("1_vrreg")
+
+[node name="2D" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="2D"]
+tile_set = ExtResource("2_wbhhh")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 1, 2, 0, 0, 3, 0, 1, 4, 0, 0, 5, 0, 1, 6, 0, 0, 7, 0, 1, 8, 0, 0, 9, 0, 1, 65536, 0, 1, 131072, 0, 0, 196608, 0, 1, 262144, 0, 0, 327680, 0, 1, 393216, 0, 0, 458752, 0, 1, 65537, 0, 0, 131073, 0, 1, 196609, 0, 0, 262145, 0, 1, 327681, 0, 0, 393217, 0, 1, 458753, 0, 0, 65538, 0, 1, 131074, 0, 0, 196610, 0, 1, 262146, 0, 0, 327682, 0, 1, 393218, 0, 0, 458754, 0, 1, 65539, 0, 0, 131075, 0, 1, 196611, 0, 0, 262147, 0, 1, 327683, 0, 0, 393219, 0, 1, 458755, 0, 0, 65540, 0, 1, 131076, 0, 0, 196612, 0, 1, 262148, 0, 0, 327684, 0, 1, 393220, 0, 0, 458756, 0, 1, 65541, 0, 0, 131077, 0, 1, 196613, 0, 0, 262149, 0, 1, 327685, 0, 0, 393221, 0, 1, 458757, 0, 0, 65542, 0, 1, 131078, 0, 0, 196614, 0, 1, 262150, 0, 0, 327686, 0, 1, 393222, 0, 0, 458758, 0, 1, 65543, 0, 0, 131079, 0, 1, 196615, 0, 0, 262151, 0, 1, 327687, 0, 0, 393223, 0, 1, 458759, 0, 0, 65544, 0, 1, 131080, 0, 0, 196616, 0, 1, 262152, 0, 0, 327688, 0, 1, 393224, 0, 0, 458760, 0, 1, 65545, 0, 0, 131081, 0, 1, 196617, 0, 0, 262153, 0, 1, 327689, 0, 0, 393225, 0, 1, 458761, 0, 0, 10, 0, 0, 65546, 0, 1, 131082, 0, 0, 196618, 0, 1, 262154, 0, 0, 327690, 0, 1, 393226, 0, 0, 458762, 0, 1, 11, 0, 1, 65547, 0, 0, 131083, 0, 1, 196619, 0, 0, 262155, 0, 1, 327691, 0, 0, 393227, 0, 1, 458763, 0, 0, 12, 0, 0, 65548, 0, 1, 131084, 0, 0, 196620, 0, 1, 262156, 0, 0, 327692, 0, 1, 393228, 0, 0, 458764, 0, 1, 13, 0, 1, 65549, 0, 0, 131085, 0, 1, 196621, 0, 0, 262157, 0, 1, 327693, 0, 0, 393229, 0, 1, 458765, 0, 0, 14, 0, 0, 65550, 0, 1, 131086, 0, 0, 196622, 0, 1, 262158, 0, 0, 327694, 0, 1, 393230, 0, 0, 458766, 0, 1, 15, 0, 1, 65551, 0, 0, 131087, 0, 1, 196623, 0, 0, 262159, 0, 1, 327695, 0, 0, 393231, 0, 1, 458767, 0, 0, 524288, 0, 0, 524289, 0, 1, 524290, 0, 0, 524291, 0, 1, 524292, 0, 0, 524293, 0, 1, 524294, 0, 0, 524295, 0, 1, 524296, 0, 0, 524297, 0, 1, 524298, 0, 0, 524299, 0, 1, 524300, 0, 0, 524301, 0, 1, 524302, 0, 0, 524303, 0, 1)
+
+[node name="Player" parent="2D" instance=ExtResource("3_oentp")]
+position = Vector2(120, 118)
+
+[node name="ContenitoreDanneggianti" type="Node" parent="2D"]
+
+[node name="Paletto" parent="2D/ContenitoreDanneggianti" instance=ExtResource("4_cpf6r")]
+position = Vector2(440, 198)
+
+[node name="ContenitoreChiavi" type="Node" parent="2D"]
+
+[node name="Chiave" parent="2D/ContenitoreChiavi" instance=ExtResource("5_p6rt8")]
+position = Vector2(520, 278)
+
+[node name="Chiave2" parent="2D/ContenitoreChiavi" instance=ExtResource("5_p6rt8")]
+position = Vector2(200, 358)
+
+[node name="Chiave3" parent="2D/ContenitoreChiavi" instance=ExtResource("5_p6rt8")]
+position = Vector2(920, 438)
+
+[node name="Uscita" type="Node2D" parent="2D"]
+position = Vector2(1280, 38)
+script = ExtResource("6_wkreh")
+metadata/_edit_group_ = true
+
+[node name="AreaUscita" type="Area2D" parent="2D/Uscita"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2D/Uscita/AreaUscita"]
+position = Vector2(40, 315)
+shape = SubResource("RectangleShape2D_sqga7")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="2D"]
+anchor_mode = 0
+script = ExtResource("11_6pkct")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="2D/Camera2D"]
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_2c2u5")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Effetti" parent="CanvasLayer" instance=ExtResource("8_siakl")]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("9_sab8k")]
+
+[connection signal="ready" from="." to="CanvasLayer/UI" method="_on_base_livello_ready"]
+[connection signal="danneggiato" from="2D/Player" to="2D/Camera2D" method="_on_player_danneggiato"]
+[connection signal="danneggiato" from="2D/Player" to="CanvasLayer/Effetti" method="_on_player_danneggiato"]
+[connection signal="danneggiato" from="2D/Player" to="CanvasLayer/UI" method="_on_player_danneggiato"]
+[connection signal="perso" from="2D/Player" to="." method="_on_player_perso"]
+[connection signal="perso" from="2D/Player" to="CanvasLayer/UI" method="_on_player_perso"]
+[connection signal="presa_chiave" from="2D/Player" to="2D/Uscita" method="_on_player_presa_chiave"]
+[connection signal="presa_chiave" from="2D/Player" to="CanvasLayer/UI" method="_on_player_presa_chiave"]
+[connection signal="area_entered" from="2D/Uscita/AreaUscita" to="2D/Uscita" method="_on_area_uscita_area_entered" flags=18]
+[connection signal="area_exited" from="2D/Uscita/AreaUscita" to="2D/Uscita" method="_on_area_uscita_area_exited" flags=18]

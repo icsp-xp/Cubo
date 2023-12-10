@@ -7,8 +7,8 @@ class_name Paletto
 @export var tempo_da_attivato : float = 1.0
 @export var tempo_da_disattivato : float = 1.0
 
-@export_category("Propietà")
-@export var danno : int = 1
+# tutti gli oggetti che danneggiano il player tolgono 1
+const DANNO : int = 1
 
 @onready var animation_player = $AnimationPlayer as AnimationPlayer
 

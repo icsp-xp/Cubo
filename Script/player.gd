@@ -1,8 +1,10 @@
 extends Area2D # Player
 
-signal danneggiato(scudo_rimanente : int)
+signal danneggiato()
 signal perso()
-signal collezionata_chiave()
+
+signal aggiorna_ui_chiave()
+signal aggiorna_ui_scudo()
 
 @export_category("Movimento")
 @export var dimensione_celle : int = 80
@@ -11,7 +13,7 @@ signal collezionata_chiave()
 @export var tempo_rotazione : float = 0.1
 
 @export_category("Propietà Player")
-@export var scudo : int = 3
+@export var numero_di_scudi : int = 3
 @export var tempo_invulnerabilita : float = 2.0
 
 @onready var animated_sprite = $AnimatedSprite as AnimatedSprite2D
@@ -29,6 +31,7 @@ var collide_con_muro : bool = false
 
 
 func _ready() -> void:
+	ScriptGlobale.numero_corrente_di_scudi = numero_di_scudi
 	area_controllo.get_node("CollisionShape2D").position.x += dimensione_celle
 
 
@@ -97,12 +100,14 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("danneggia"):
 		var paletto : Paletto = area
 		
-		scudo -= paletto.danno
-		
-		if scudo < 0:
+		if ScriptGlobale.numero_corrente_di_scudi - paletto.DANNO >= 0:
+			ScriptGlobale.numero_corrente_di_scudi -= paletto.DANNO
+		else:
+			ScriptGlobale.numero_corrente_di_scudi = 0
 			emit_signal("perso")
 			
-		emit_signal("danneggiato", scudo)
+		emit_signal("aggiorna_ui_scudo")
+		emit_signal("danneggiato")
 		
 		# invulnerabilità player: sposta il collision_mask a 2 per non vedere la 
 		# collisione del paletto che ha collision_layer in 1, ma vede la collisione della
@@ -116,6 +121,7 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area.is_in_group("chiave"):
 		var chiave : Chiave = area
 		
-		emit_signal("collezionata_chiave")
-		chiave.prendi_chiave()
+		chiave.elimina_chiave()
+		ScriptGlobale.numero_corrente_di_chiavi -= 1
+		emit_signal("aggiorna_ui_chiave")
 

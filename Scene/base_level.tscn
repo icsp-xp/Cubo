@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://nw2g0d0skgai"]
+[gd_scene load_steps=8 format=3 uid="uid://nw2g0d0skgai"]
 
 [ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_0g10e"]
 [ext_resource type="Script" path="res://Script/GestoioneSegnali.gd" id="2_da8wf"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d288xrkdmpbre" path="res://Scene/player.tscn" id="3_4oniw"]
 [ext_resource type="PackedScene" uid="uid://bselgyt6uq64q" path="res://Scene/chiave.tscn" id="3_vnjn2"]
 [ext_resource type="PackedScene" uid="uid://ceedvsppgb5cr" path="res://Scene/paletti.tscn" id="4_xdrjb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqga7"]
+size = Vector2(20, 650)
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_0g10e")
@@ -31,3 +34,17 @@ position = Vector2(520, 278)
 
 [node name="Chiave2" parent="ContenitoreChiavi" instance=ExtResource("3_vnjn2")]
 position = Vector2(200, 358)
+
+[node name="Chiave3" parent="ContenitoreChiavi" instance=ExtResource("3_vnjn2")]
+position = Vector2(920, 438)
+
+[node name="Uscita" type="Node2D" parent="."]
+position = Vector2(1280, 38)
+metadata/_edit_group_ = true
+
+[node name="AreaUscita" type="Area2D" parent="Uscita"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Uscita/AreaUscita"]
+position = Vector2(0, 315)
+shape = SubResource("RectangleShape2D_sqga7")
+disabled = true

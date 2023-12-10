@@ -3,7 +3,7 @@ extends Area2D # Player
 signal danneggiato()
 signal perso()
 
-signal aggiorna_ui_chiave()
+signal presa_chiave()
 signal aggiorna_ui_scudo()
 
 @export_category("Movimento")
@@ -21,6 +21,8 @@ signal aggiorna_ui_scudo()
 # controlla se avvengono collisioni con muri o oggetti non attraversabili
 @onready var area_controllo = $Area2D as Area2D
 @onready var collision_shape_player = $CollisionShape2D as CollisionShape2D
+
+@onready var uscita = $"../Uscita" as Node2D
 
 var direzioni : Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 var indice_direzione : int = 0
@@ -62,7 +64,7 @@ func ruota_player() -> void:
 
 
 func sposta_player() -> void:
-	if Input.is_action_just_pressed("avanza"):
+	if not uscita.puo_uscire and Input.is_action_just_pressed("avanza"):
 		if puo_muovere:
 			var tween : Tween = get_tree().create_tween()
 			tween.tween_property(self, "position", position + direzioni[indice_direzione] * dimensione_celle, tempo_spostamento).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
@@ -71,6 +73,8 @@ func sposta_player() -> void:
 			
 			animated_sprite.speed_scale = 0.625 / tempo_spostamento + 0.1 # fotogrammi / fps = 0.625, 0.1 offset
 			animated_sprite.play("movimento")
+	elif uscita.puo_uscire and Input.is_action_just_pressed("avanza"):
+		print("esci")
 
 
 func _process(delta : float) -> void:
@@ -123,5 +127,5 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		chiave.elimina_chiave()
 		ScriptGlobale.numero_corrente_di_chiavi -= 1
-		emit_signal("aggiorna_ui_chiave")
+		emit_signal("presa_chiave")
 

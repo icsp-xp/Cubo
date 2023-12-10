@@ -90,7 +90,7 @@ texture = ExtResource("14_q1wg1")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_thtlc")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["AreaControllo"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_u5r70")

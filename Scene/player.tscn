@@ -76,6 +76,7 @@ frame_progress = 1.0
 [node name="Direction" type="PointLight2D" parent="AnimatedSprite"]
 position = Vector2(0, 5)
 shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.313726)
 texture = ExtResource("13_cv22k")
 offset = Vector2(0, -0.6)
 texture_scale = 0.7

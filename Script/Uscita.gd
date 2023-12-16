@@ -1,4 +1,4 @@
-extends Node2D # Uscita
+extends Marker2D # Uscita
 
 signal chiavi_prese()
 

@@ -23,7 +23,7 @@ signal cambia_livello()
 @onready var area_controllo = $Area2D as Area2D
 @onready var collision_shape_player = $CollisionShape2D as CollisionShape2D
 
-@onready var uscita = %Uscita as Node2D
+@onready var uscita = %Uscita as Marker2D
 
 
 var direzioni : Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]

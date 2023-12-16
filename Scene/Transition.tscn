@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://nlf6hgxr7paa"]
+
+[ext_resource type="Shader" path="res://Shader/TransitionMask.gdshader" id="1_c4elj"]
+[ext_resource type="Texture2D" uid="uid://ov8rvg3jrqpk" path="res://Assets/TransitionMak/Mask1.png" id="2_ap5vr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m8lux"]
+shader = ExtResource("1_c4elj")
+shader_parameter/cutoff = 1.0
+shader_parameter/smooth_size = 0.2
+shader_parameter/mask = ExtResource("2_ap5vr")
+
+[sub_resource type="Animation" id="Animation_68pkv"]
+resource_name = "In"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xwari"]
+resource_name = "Out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ynr2i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ymqg8"]
+_data = {
+"In": SubResource("Animation_68pkv"),
+"Out": SubResource("Animation_xwari"),
+"RESET": SubResource("Animation_ynr2i")
+}
+
+[node name="Transition" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_m8lux")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.137255, 0.160784, 1)
+
+[node name="AnimationTransition" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_ymqg8")
+}

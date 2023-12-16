@@ -17,6 +17,7 @@ config/icon="res://Icona.png"
 [autoload]
 
 ScriptGlobale="*res://Globali/ScriptGlobale.gd"
+Transition="*res://Scene/Transition.tscn"
 
 [display]
 

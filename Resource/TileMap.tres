@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://b3oplcqw8uw7r"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://b3oplcqw8uw7r"]
 
 [ext_resource type="Texture2D" uid="uid://bwpechusesgky" path="res://Assets/GroundTile.png" id="1_nuvea"]
 [ext_resource type="Texture2D" uid="uid://d4fku0j1mqfiy" path="res://Assets/Muro.png" id="2_rvhe8"]
@@ -53,11 +53,13 @@ texture_region_size = Vector2i(80, 80)
 0:2/0/physics_layer_0/angular_velocity = 0.0
 0:2/0/terrains_peering_bit/right_side = 0
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_f5qpm"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_btnk6"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_37jr0"]
 polygon = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_05f66"]
-polygon = PackedVector2Array(-40, -40, 40, -40, 40, 23.5, -40, 23.5)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wyxd0"]
+polygon = PackedVector2Array(-40, -40, -40, 26.6667, 40, 26.6667, 40, -40)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c5sxu"]
 resource_name = "Muri"
@@ -66,13 +68,14 @@ texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 1
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_f5qpm")
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_btnk6")
+0:0/0/occlusion_layer_1/polygon = SubResource("OccluderPolygon2D_37jr0")
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 0:1/0 = 0
 0:1/0/terrain_set = 0
-0:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_05f66")
+0:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wyxd0")
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
@@ -81,6 +84,7 @@ texture_region_size = Vector2i(80, 80)
 [resource]
 tile_size = Vector2i(80, 80)
 occlusion_layer_0/light_mask = 1
+occlusion_layer_1/light_mask = 1
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Ground"

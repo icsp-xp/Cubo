@@ -1,5 +1,7 @@
 extends Node2D # Uscita
 
+signal chiavi_prese()
+
 @onready var collision_shape_2d = $AreaUscita/CollisionShape2D as CollisionShape2D
 
 var puo_uscire : bool = false
@@ -7,6 +9,7 @@ var puo_uscire : bool = false
 
 func _on_player_presa_chiave() -> void:
 	if ScriptGlobale.numero_corrente_di_chiavi <= 0:
+		chiavi_prese.emit()
 		collision_shape_2d.call_deferred("set_disabled", false)
 
 

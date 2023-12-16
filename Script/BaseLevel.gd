@@ -2,6 +2,7 @@ extends Node #main
 
 @export_category("Propietà")
 @export var numero_chiavi_nel_livello : int = 3
+@export var prossimo_livello : PackedScene = null
 
 
 func _ready() -> void:
@@ -13,3 +14,7 @@ func _ready() -> void:
 func _on_player_perso() -> void:
 	# magari far asperttare che gli effetti e lo shake finiscano
 	get_tree().set_pause(true)
+
+
+func _on_player_cambia_livello() -> void:
+	pass # Replace with function body.

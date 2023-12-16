@@ -3,6 +3,7 @@ extends Area2D # Player
 signal danneggiato()
 signal perso()
 signal presa_chiave()
+signal cambia_livello()
 
 
 @export_category("Movimento")
@@ -22,7 +23,7 @@ signal presa_chiave()
 @onready var area_controllo = $Area2D as Area2D
 @onready var collision_shape_player = $CollisionShape2D as CollisionShape2D
 
-@onready var uscita = $"../Uscita" as Node2D
+@onready var uscita = %Uscita as Node2D
 
 
 var direzioni : Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
@@ -75,7 +76,7 @@ func sposta_player() -> void:
 			animated_sprite.speed_scale = 0.625 / tempo_spostamento + 0.1 # fotogrammi / fps = 0.625, 0.1 offset
 			animated_sprite.play("movimento")
 	elif uscita.puo_uscire and Input.is_action_just_pressed("avanza"):
-		print("esci")
+		cambia_livello.emit()
 
 
 func _process(delta : float) -> void:
@@ -109,9 +110,9 @@ func _on_area_entered(area: Area2D) -> void:
 			ScriptGlobale.numero_corrente_di_scudi -= paletto.DANNO
 		else:
 			ScriptGlobale.numero_corrente_di_scudi = 0
-			emit_signal("perso")
+			perso.emit()
 			
-		emit_signal("danneggiato")
+		danneggiato.emit()
 		
 		# invulnerabilità player: sposta il collision_mask a 2 per non vedere la 
 		# collisione del paletto che ha collision_layer in 1, ma vede la collisione della
@@ -127,5 +128,5 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		chiave.elimina_chiave()
 		ScriptGlobale.numero_corrente_di_chiavi -= 1
-		emit_signal("presa_chiave")
+		presa_chiave.emit()
 

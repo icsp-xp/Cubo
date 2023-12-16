@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://b3oplcqw8uw7r" path="res://Resource/TileMap.tres" id="2_wbhhh"]
 [ext_resource type="PackedScene" uid="uid://d288xrkdmpbre" path="res://Scene/Player.tscn" id="3_oentp"]
 [ext_resource type="PackedScene" uid="uid://ceedvsppgb5cr" path="res://Scene/Paletti.tscn" id="4_cpf6r"]
-[ext_resource type="PackedScene" uid="uid://bselgyt6uq64q" path="res://Scene/Chiave.tscn" id="5_p6rt8"]
+[ext_resource type="PackedScene" uid="uid://bselgyt6uq64q" path="res://Scene/chiave.tscn" id="5_p6rt8"]
 [ext_resource type="Script" path="res://Script/Uscita.gd" id="6_wkreh"]
 [ext_resource type="PackedScene" uid="uid://b0457tdkr07ah" path="res://Scene/Effetti.tscn" id="8_siakl"]
 [ext_resource type="PackedScene" uid="uid://dx7jgkuntpghv" path="res://Scene/UI.tscn" id="9_sab8k"]
@@ -82,6 +82,7 @@ position = Vector2(200, 358)
 position = Vector2(920, 438)
 
 [node name="Uscita" type="Node2D" parent="2D"]
+unique_name_in_owner = true
 position = Vector2(1280, 38)
 script = ExtResource("6_wkreh")
 metadata/_edit_group_ = true
@@ -111,6 +112,7 @@ libraries = {
 [node name="UI" parent="CanvasLayer" instance=ExtResource("9_sab8k")]
 
 [connection signal="ready" from="." to="CanvasLayer/UI" method="_on_base_livello_ready"]
+[connection signal="cambia_livello" from="2D/Player" to="." method="_on_player_cambia_livello"]
 [connection signal="danneggiato" from="2D/Player" to="2D/Camera2D" method="_on_player_danneggiato"]
 [connection signal="danneggiato" from="2D/Player" to="CanvasLayer/Effetti" method="_on_player_danneggiato"]
 [connection signal="danneggiato" from="2D/Player" to="CanvasLayer/UI" method="_on_player_danneggiato"]
@@ -118,5 +120,7 @@ libraries = {
 [connection signal="perso" from="2D/Player" to="CanvasLayer/UI" method="_on_player_perso"]
 [connection signal="presa_chiave" from="2D/Player" to="2D/Uscita" method="_on_player_presa_chiave"]
 [connection signal="presa_chiave" from="2D/Player" to="CanvasLayer/UI" method="_on_player_presa_chiave"]
+[connection signal="chiavi_prese" from="2D/Uscita" to="2D/Camera2D" method="_on_uscita_chiavi_prese"]
+[connection signal="chiavi_prese" from="2D/Uscita" to="CanvasLayer/Effetti" method="_on_uscita_chiavi_prese"]
 [connection signal="area_entered" from="2D/Uscita/AreaUscita" to="2D/Uscita" method="_on_area_uscita_area_entered" flags=18]
 [connection signal="area_exited" from="2D/Uscita/AreaUscita" to="2D/Uscita" method="_on_area_uscita_area_exited" flags=18]

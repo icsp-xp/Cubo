@@ -100,6 +100,7 @@ theme_override_constants/separation = 10
 [node name="IconChiave" type="TextureRect" parent="MarginContainerChiavi/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_ahyv1")
+expand_mode = 3
 stretch_mode = 5
 
 [node name="NumChiavi" type="Label" parent="MarginContainerChiavi/HBoxContainer"]

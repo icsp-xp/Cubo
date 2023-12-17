@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2do6w01g1bkb"]
+
+[ext_resource type="Script" path="res://Script/MainMenu.gd" id="1_1f1wd"]
+[ext_resource type="Texture2D" uid="uid://dr8yuttgtd5t6" path="res://Assets/Background.png" id="1_chd8p"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1f1wd")
+primo_livello = "res://Scene/Livelli/Livello1.tscn"
+tutorial = "res://Scene/Livelli/Tutorial.tscn"
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_chd8p")
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="ButtonPlay" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Play"
+
+[node name="ButtonTutorial" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Tutorial"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="ButtonExit" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(64, 42)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Exit"
+
+[connection signal="button_up" from="VBoxContainer/ButtonPlay" to="." method="_on_button_play_button_up"]
+[connection signal="button_up" from="VBoxContainer/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
+[connection signal="button_up" from="MarginContainer/ButtonExit" to="." method="_on_button_exit_button_up"]

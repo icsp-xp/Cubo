@@ -66,7 +66,7 @@ func ruota_player() -> void:
 
 
 func sposta_player() -> void:
-	if not uscita.puo_uscire and Input.is_action_just_pressed("avanza"):
+	if not collide_con_muro and not uscita.puo_uscire and Input.is_action_just_pressed("avanza"):
 		if puo_muovere:
 			var tween : Tween = get_tree().create_tween()
 			tween.tween_property(self, "position", position + direzioni[indice_direzione] * dimensione_celle, tempo_spostamento).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
@@ -75,15 +75,14 @@ func sposta_player() -> void:
 			
 			animated_sprite.speed_scale = 0.625 / tempo_spostamento + 0.1 # fotogrammi / fps = 0.625, 0.1 offset
 			animated_sprite.play("movimento")
-	elif uscita.puo_uscire and Input.is_action_just_pressed("avanza"):
+			
+	if uscita.puo_uscire and Input.is_action_just_pressed("avanza"):
 		cambia_livello.emit()
 
 
 func _process(delta : float) -> void:
 	ruota_player()
-	
-	if not collide_con_muro:
-		sposta_player()
+	sposta_player()
 
 
 func rotazione_finita() -> void:

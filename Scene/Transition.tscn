@@ -107,7 +107,7 @@ layer = 2
 
 [node name="AudioTransition" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_rb2b6")
-volume_db = -7.0
+volume_db = -6.0
 pitch_scale = 0.7
 bus = &"Sfx"
 

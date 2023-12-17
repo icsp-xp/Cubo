@@ -1,5 +1,7 @@
 extends Node #main
 
+class_name BaseLevel
+
 @export_category("Propietà")
 @export var numero_chiavi_nel_livello : int = 3
 @export var prossimo_livello : String = ""

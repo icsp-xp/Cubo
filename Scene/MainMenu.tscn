@@ -1,7 +1,97 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2do6w01g1bkb"]
+[gd_scene load_steps=7 format=3 uid="uid://c2do6w01g1bkb"]
 
 [ext_resource type="Script" path="res://Script/MainMenu.gd" id="1_1f1wd"]
 [ext_resource type="Texture2D" uid="uid://dr8yuttgtd5t6" path="res://Assets/Background.png" id="1_chd8p"]
+
+[sub_resource type="Animation" id="Animation_8skc5"]
+resource_name = "In"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(111, 0), Vector2(111, 87)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1169, 660), Vector2(1169, 574)]
+}
+
+[sub_resource type="Animation" id="Animation_oj3mm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(111, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1169, 660)]
+}
+
+[sub_resource type="Animation" id="Animation_rnbgf"]
+resource_name = "Out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(111, 87), Vector2(111, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(1169, 574), Vector2(1169, 660)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_720kd"]
+_data = {
+"In": SubResource("Animation_8skc5"),
+"Out": SubResource("Animation_rnbgf"),
+"RESET": SubResource("Animation_oj3mm")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,7 +101,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1f1wd")
-primo_livello = "res://Scene/Livelli/Livello1.tscn"
+livelli_menu = "res://Scene/LivelliMenu.tscn"
 tutorial = "res://Scene/Livelli/Tutorial.tscn"
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
@@ -47,11 +137,6 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Play"
 
-[node name="ButtonLevels" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(128, 64)
-layout_mode = 2
-text = "Levels"
-
 [node name="ButtonTutorial" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
@@ -75,25 +160,75 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Exit"
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="Settings" type="Node" parent="."]
+
+[node name="Control" type="Control" parent="Settings"]
+clip_contents = true
+layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -111.0
+offset_top = -60.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Settings/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_right = 27.0
+offset_bottom = 77.0
+grow_horizontal = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ButtonMusic" type="Button" parent="Settings/Control/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+toggle_mode = true
+text = "Music"
+
+[node name="ButtonSFX" type="Button" parent="Settings/Control/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+toggle_mode = true
+text = "Sfx"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Settings"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -57.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Button" type="Button" parent="MarginContainer2"]
+[node name="ButtonSettings" type="Button" parent="Settings/MarginContainer2"]
 custom_minimum_size = Vector2(80, 42)
 layout_mode = 2
+size_flags_vertical = 8
+toggle_mode = true
 text = "Settings"
+
+[node name="AnimationSettings" type="AnimationPlayer" parent="Settings"]
+libraries = {
+"": SubResource("AnimationLibrary_720kd")
+}
+autoplay = "RESET"
 
 [connection signal="button_up" from="VBoxContainer/ButtonPlay" to="." method="_on_button_play_button_up"]
 [connection signal="button_up" from="VBoxContainer/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]
 [connection signal="button_up" from="MarginContainer/ButtonExit" to="." method="_on_button_exit_button_up"]
+[connection signal="toggled" from="Settings/Control/VBoxContainer2/ButtonMusic" to="." method="_on_button_music_toggled"]
+[connection signal="toggled" from="Settings/Control/VBoxContainer2/ButtonSFX" to="." method="_on_button_sfx_toggled"]
+[connection signal="toggled" from="Settings/MarginContainer2/ButtonSettings" to="." method="_on_button_settings_toggled"]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb422bk484vyo"]
+
+[ext_resource type="Script" path="res://Script/LivelliMenu.gd" id="1_4e33b"]
+[ext_resource type="Texture2D" uid="uid://dr8yuttgtd5t6" path="res://Assets/Background.png" id="1_wdkl6"]
+
+[node name="LivelliMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4e33b")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wdkl6")
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 3
+
+[node name="ButtonLivello1" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+text = "1"
+
+[node name="ButtonLivello2" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "2"
+
+[node name="ButtonLivello3" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "3"
+
+[connection signal="button_up" from="CenterContainer/PanelContainer/MarginContainer/GridContainer/ButtonLivello1" to="." method="_on_button_livello_1_button_up" binds= ["res://Scene/Livelli/Livello1.tscn"]]
+[connection signal="button_up" from="CenterContainer/PanelContainer/MarginContainer/GridContainer/ButtonLivello2" to="." method="_on_button_livello_2_button_up" binds= ["res://Scene/Livelli/Livello2.tscn"]]
+[connection signal="button_up" from="CenterContainer/PanelContainer/MarginContainer/GridContainer/ButtonLivello3" to="." method="_on_button_livello_3_button_up" binds= ["res://Scene/Livelli/Livello3.tscn"]]

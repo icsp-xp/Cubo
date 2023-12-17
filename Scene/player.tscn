@@ -69,11 +69,12 @@ script = ExtResource("1_pb74o")
 
 [node name="AudioDanno" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_5qcyu")
+volume_db = -10.0
 bus = &"Sfx"
 
 [node name="AudioPasso" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_rxbn4")
-volume_db = -10.0
+volume_db = -8.0
 bus = &"Sfx"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]

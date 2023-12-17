@@ -47,6 +47,11 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Play"
 
+[node name="ButtonLevels" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+text = "Levels"
+
 [node name="ButtonTutorial" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
@@ -69,6 +74,25 @@ custom_minimum_size = Vector2(64, 42)
 layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Exit"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Button" type="Button" parent="MarginContainer2"]
+custom_minimum_size = Vector2(80, 42)
+layout_mode = 2
+text = "Settings"
 
 [connection signal="button_up" from="VBoxContainer/ButtonPlay" to="." method="_on_button_play_button_up"]
 [connection signal="button_up" from="VBoxContainer/ButtonTutorial" to="." method="_on_button_tutorial_button_up"]

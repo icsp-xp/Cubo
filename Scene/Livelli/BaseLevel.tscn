@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctb88ivhf3ib7"]
+[gd_scene load_steps=15 format=3 uid="uid://ctb88ivhf3ib7"]
 
 [ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_vrreg"]
+[ext_resource type="AudioStream" uid="uid://cwo7nigbnbnfi" path="res://Assets/Sfx/ProssimoLivello.wav" id="2_77qd7"]
 [ext_resource type="TileSet" uid="uid://b3oplcqw8uw7r" path="res://Resource/TileMap.tres" id="2_wbhhh"]
 [ext_resource type="PackedScene" uid="uid://d288xrkdmpbre" path="res://Scene/Player.tscn" id="3_oentp"]
 [ext_resource type="PackedScene" uid="uid://ceedvsppgb5cr" path="res://Scene/Paletti.tscn" id="4_cpf6r"]
@@ -92,6 +93,12 @@ position = Vector2(1320, 358)
 gizmo_extents = 60.0
 script = ExtResource("6_wkreh")
 metadata/_edit_group_ = true
+
+[node name="AudioProssimoLivello" type="AudioStreamPlayer" parent="2D/Uscita"]
+stream = ExtResource("2_77qd7")
+volume_db = -15.0
+pitch_scale = 1.5
+bus = &"Sfx"
 
 [node name="AreaUscita" type="Area2D" parent="2D/Uscita"]
 

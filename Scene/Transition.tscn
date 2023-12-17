@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://nlf6hgxr7paa"]
+[gd_scene load_steps=9 format=3 uid="uid://nlf6hgxr7paa"]
 
 [ext_resource type="Shader" path="res://Shader/TransitionMask.gdshader" id="1_c4elj"]
+[ext_resource type="AudioStream" uid="uid://cugwhgayu3ulv" path="res://Assets/Sfx/Transition.mp3" id="1_rb2b6"]
 [ext_resource type="Texture2D" uid="uid://ov8rvg3jrqpk" path="res://Assets/TransitionMak/Mask1.png" id="2_ap5vr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m8lux"]
@@ -12,6 +13,7 @@ shader_parameter/mask = ExtResource("2_ap5vr")
 [sub_resource type="Animation" id="Animation_68pkv"]
 resource_name = "In"
 length = 0.6
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,6 +26,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0, 0.0, 0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioTransition:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_xwari"]
 resource_name = "Out"
@@ -35,10 +49,22 @@ tracks/0/path = NodePath("ColorRect:material:shader_parameter/cutoff")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.6),
-"transitions": PackedFloat32Array(0.5, 1),
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 0.5, 1),
 "update": 0,
-"values": [0.0, 1.0]
+"values": [0.0, 0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioTransition:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_ynr2i"]
@@ -55,6 +81,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioTransition:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ymqg8"]
 _data = {
@@ -66,6 +104,12 @@ _data = {
 [node name="Transition" type="CanvasLayer"]
 process_mode = 3
 layer = 2
+
+[node name="AudioTransition" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_rb2b6")
+volume_db = -7.0
+pitch_scale = 0.7
+bus = &"Sfx"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_m8lux")

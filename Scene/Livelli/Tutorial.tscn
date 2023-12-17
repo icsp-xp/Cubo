@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dcopv01aorh0p"]
+[gd_scene load_steps=16 format=3 uid="uid://dcopv01aorh0p"]
 
 [ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_dltmu"]
 [ext_resource type="TileSet" uid="uid://b3oplcqw8uw7r" path="res://Resource/TileMap.tres" id="2_plmuh"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://bselgyt6uq64q" path="res://Scene/Chiave.tscn" id="5_dl5dp"]
 [ext_resource type="Script" path="res://Script/Uscita.gd" id="6_d5w4h"]
 [ext_resource type="Script" path="res://Script/Camera.gd" id="7_62s1o"]
+[ext_resource type="AudioStream" uid="uid://cwo7nigbnbnfi" path="res://Assets/Sfx/ProssimoLivello.wav" id="7_w1y7d"]
 [ext_resource type="PackedScene" uid="uid://b0457tdkr07ah" path="res://Scene/Effetti.tscn" id="8_1io54"]
 [ext_resource type="PackedScene" uid="uid://dx7jgkuntpghv" path="res://Scene/UI.tscn" id="9_jfg68"]
+[ext_resource type="LabelSettings" uid="uid://cwnk2tdjvk7qw" path="res://Assets/Risorse/LabelSettings.tres" id="9_ycfe5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqga7"]
 size = Vector2(80, 650)
@@ -109,6 +111,12 @@ gizmo_extents = 60.0
 script = ExtResource("6_d5w4h")
 metadata/_edit_group_ = true
 
+[node name="AudioProssimoLivello" type="AudioStreamPlayer" parent="2D/Uscita"]
+stream = ExtResource("7_w1y7d")
+volume_db = -15.0
+pitch_scale = 1.5
+bus = &"Sfx"
+
 [node name="AreaUscita" type="Area2D" parent="2D/Uscita"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="2D/Uscita/AreaUscita"]
@@ -136,31 +144,35 @@ grow_vertical = 2
 
 [node name="Comandi" type="Label" parent="Tutorial"]
 layout_mode = 0
-offset_left = 120.0
+offset_left = 100.0
 offset_top = 85.0
-offset_right = 280.0
+offset_right = 300.0
 offset_bottom = 160.0
 text = "Usa 'A' e 'D' per ruotare e 'freccia su' per spostarti"
+label_settings = ExtResource("9_ycfe5")
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Comandi2" type="Label" parent="Tutorial"]
 layout_mode = 0
-offset_left = 122.0
-offset_top = 395.0
-offset_right = 282.0
-offset_bottom = 470.0
+offset_left = 110.0
+offset_top = 400.0
+offset_right = 297.0
+offset_bottom = 475.0
 text = "Colleziona tutte le chiavi per sbloccare l'uscita"
+label_settings = ExtResource("9_ycfe5")
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Comandi3" type="Label" parent="Tutorial"]
 layout_mode = 0
-offset_left = 760.0
-offset_top = 440.0
-offset_right = 920.0
-offset_bottom = 463.0
-text = "evita gli ostacoli"
+offset_left = 766.0
+offset_top = 450.0
+offset_right = 926.0
+offset_bottom = 500.0
+text = "evita
+gli ostacoli"
+label_settings = ExtResource("9_ycfe5")
 horizontal_alignment = 1
 autowrap_mode = 2
 

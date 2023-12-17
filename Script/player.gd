@@ -24,6 +24,8 @@ signal cambia_livello()
 @onready var collision_shape_player = $CollisionShape2D as CollisionShape2D
 
 @onready var uscita = %Uscita as Marker2D
+@onready var audio_passo = $AudioPasso as AudioStreamPlayer
+@onready var audio_danno = $AudioDanno as AudioStreamPlayer
 
 
 var direzioni : Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
@@ -65,10 +67,16 @@ func ruota_player() -> void:
 			area_controllo.rotation_degrees = wrapi(area_controllo.rotation_degrees - 90, 0, 360)
 
 
+func suono_passo() -> void:
+	audio_passo.pitch_scale = randf_range(1.0, 1.25)
+	audio_passo.play()
+
+
 func sposta_player() -> void:
 	if not collide_con_muro and not uscita.puo_uscire and Input.is_action_just_pressed("avanza"):
 		if puo_muovere:
 			var tween : Tween = get_tree().create_tween()
+			suono_passo()
 			tween.tween_property(self, "position", position + direzioni[indice_direzione] * dimensione_celle, tempo_spostamento).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 			tween.connect("finished", movimento_finito)
 			puo_muovere = false
@@ -111,6 +119,7 @@ func _on_area_entered(area: Area2D) -> void:
 			ScriptGlobale.numero_corrente_di_scudi = 0
 			perso.emit()
 			
+		audio_danno.play()
 		danneggiato.emit()
 		
 		# invulnerabilità player: sposta il collision_mask a 2 per non vedere la 

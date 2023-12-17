@@ -1,7 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://d288xrkdmpbre"]
+[gd_scene load_steps=20 format=3 uid="uid://d288xrkdmpbre"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_pb74o"]
 [ext_resource type="Texture2D" uid="uid://t3y34cav41d5" path="res://Assets/PlayerAnimation/Player1.png" id="2_4vii2"]
+[ext_resource type="AudioStream" uid="uid://d31t4hc4xaog8" path="res://Assets/Sfx/damage.mp3" id="2_5qcyu"]
+[ext_resource type="AudioStream" uid="uid://d6i1rwb7yodh" path="res://Assets/Sfx/Passi.mp3" id="2_rxbn4"]
 [ext_resource type="Texture2D" uid="uid://vmj3ox1ax8f2" path="res://Assets/PlayerAnimation/Player2.png" id="3_gp6wy"]
 [ext_resource type="Texture2D" uid="uid://cg3s4713epp81" path="res://Assets/PlayerAnimation/Player3.png" id="4_whevg"]
 [ext_resource type="Texture2D" uid="uid://b7yw40aatmsca" path="res://Assets/PlayerAnimation/Player4.png" id="5_u7qy6"]
@@ -64,6 +66,15 @@ size = Vector2(68, 65)
 [node name="Player" type="Area2D"]
 z_index = 1
 script = ExtResource("1_pb74o")
+
+[node name="AudioDanno" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5qcyu")
+bus = &"Sfx"
+
+[node name="AudioPasso" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rxbn4")
+volume_db = -10.0
+bus = &"Sfx"
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 light_mask = 2

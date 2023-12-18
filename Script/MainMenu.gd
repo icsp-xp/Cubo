@@ -14,6 +14,7 @@ extends Control # MainMuenu
 
 
 var config_file : ConfigFile = ConfigFile.new()
+var path_salvataggio : String = "res://Salvataggi/DatiMainMenu.cfg"
 
 
 func  _ready() -> void:
@@ -27,7 +28,7 @@ func _on_button_play_button_up() -> void:
 		transition.get_node("AnimationTransition").play("In")
 		await transition.get_node("AnimationTransition").animation_finished
 		
-		ScriptGlobale.salva_dati(config_file, "res://Salvataggi/datiMainMenu.cfg")
+		ScriptGlobale.salva_dati(config_file, path_salvataggio)
 		
 		var scena = load(livelli_menu)
 		get_tree().change_scene_to_packed(scena)
@@ -40,7 +41,7 @@ func _on_button_tutorial_button_up() -> void:
 		transition.get_node("AnimationTransition").play("In")
 		await transition.get_node("AnimationTransition").animation_finished
 		
-		ScriptGlobale.salva_dati(config_file, "res://Salvataggi/datiMainMenu.cfg")
+		ScriptGlobale.salva_dati(config_file, path_salvataggio)
 		
 		var scena = load(tutorial)
 		get_tree().change_scene_to_packed(scena)
@@ -52,7 +53,7 @@ func _on_button_exit_button_up() -> void:
 	transition.get_node("AnimationTransition").play("In")
 	await transition.get_node("AnimationTransition").animation_finished
 	
-	ScriptGlobale.salva_dati(config_file, "res://Salvataggi/datiMainMenu.cfg")
+	ScriptGlobale.salva_dati(config_file, path_salvataggio)
 	
 	get_tree().quit()
 
@@ -87,7 +88,7 @@ func _on_button_music_toggled(toggled_on : bool) -> void:
 
 
 func ricarica_dati_menu() -> void:
-	var config : ConfigFile = ScriptGlobale.prendi_config_file("res://Salvataggi/datiMainMenu.cfg") as ConfigFile
+	var config : ConfigFile = ScriptGlobale.prendi_config_file(path_salvataggio) as ConfigFile
 	
 	if config == null:
 		return

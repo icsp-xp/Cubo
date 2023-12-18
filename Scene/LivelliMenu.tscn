@@ -69,6 +69,24 @@ theme_override_font_sizes/font_size = 32
 disabled = true
 text = "3"
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+
+[node name="ButtonMainMenu" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(118, 54)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "MainMenu"
+
 [connection signal="button_up" from="CenterContainer/PanelContainer/MarginContainer/GridContainer/ButtonLivello1" to="." method="_on_button_livello_1_button_up" binds= ["res://Scene/Livelli/Livello1.tscn"]]
 [connection signal="button_up" from="CenterContainer/PanelContainer/MarginContainer/GridContainer/ButtonLivello2" to="." method="_on_button_livello_2_button_up" binds= ["res://Scene/Livelli/Livello2.tscn"]]
 [connection signal="button_up" from="CenterContainer/PanelContainer/MarginContainer/GridContainer/ButtonLivello3" to="." method="_on_button_livello_3_button_up" binds= ["res://Scene/Livelli/Livello3.tscn"]]
+[connection signal="button_up" from="MarginContainer/ButtonMainMenu" to="." method="_on_button_main_menu_button_up"]

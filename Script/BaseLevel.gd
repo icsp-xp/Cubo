@@ -3,13 +3,36 @@ extends Node #main
 class_name BaseLevel
 
 @export_category("Propietà")
+@export var ID : int = 1 # default value
 @export var numero_chiavi_nel_livello : int = 3
 @export var prossimo_livello : String = ""
 
 @onready var transition = $"/root/Transition" as CanvasLayer
 
 
+var config_file : ConfigFile = ConfigFile.new()
+var path_salvataggio : String = "res://Salvataggi/DatiLivelli.cfg"
+
+
+func salva_dati_livello() -> void:
+	ScriptGlobale.ultimo_livello_sbloccato = max(ID, ScriptGlobale.ultimo_livello_sbloccato)
+	config_file.set_value("livello", "id_ultimo_livello_sbloccato", ScriptGlobale.ultimo_livello_sbloccato)
+	
+	ScriptGlobale.salva_dati(config_file, path_salvataggio)
+
+
+func ricarica_dati_livello() -> void:
+	var config : ConfigFile = ScriptGlobale.prendi_config_file(path_salvataggio) as ConfigFile
+	
+	if config == null:
+		return
+	
+	ScriptGlobale.ultimo_livello_sbloccato = config.get_value("livello", "id_ultimo_livello_sbloccato", 1)
+
+
 func _ready() -> void:
+	ricarica_dati_livello()
+	
 	transition.get_node("AnimationTransition").play("Out")
 	ScriptGlobale.numero_corrente_di_chiavi = numero_chiavi_nel_livello
 	
@@ -18,11 +41,14 @@ func _ready() -> void:
 
 
 func _on_player_perso() -> void:
+	salva_dati_livello()
 	# magari far asperttare che gli effetti e lo shake finiscano
 	get_tree().set_pause(true)
 
 
 func _on_player_cambia_livello() -> void: # one shot
+	salva_dati_livello()
+	
 	transition.get_node("AnimationTransition").play("In")
 	get_tree().set_pause(true)
 	await transition.get_node("AnimationTransition").animation_finished

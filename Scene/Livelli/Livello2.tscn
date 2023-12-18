@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://5s1fxgf2nswe"]
+[gd_scene load_steps=16 format=3 uid="uid://5s1fxgf2nswe"]
 
 [ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_q0ykl"]
 [ext_resource type="TileSet" uid="uid://b3oplcqw8uw7r" path="res://Resource/TileMap.tres" id="2_uuneh"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cwo7nigbnbnfi" path="res://Assets/Sfx/ProssimoLivello.wav" id="7_pd4uc"]
 [ext_resource type="PackedScene" uid="uid://b0457tdkr07ah" path="res://Scene/Effetti.tscn" id="8_qlv1k"]
 [ext_resource type="PackedScene" uid="uid://dx7jgkuntpghv" path="res://Scene/UI.tscn" id="9_3arwc"]
+[ext_resource type="PackedScene" uid="uid://cagbspo3f0ok0" path="res://Scene/GameMenu.tscn" id="11_vnu8v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqga7"]
 size = Vector2(80, 650)
@@ -55,6 +56,7 @@ _data = {
 [node name="Livello2" type="Node"]
 process_mode = 1
 script = ExtResource("1_q0ykl")
+ID = 2
 prossimo_livello = "res://Scene/Livelli/Livello3.tscn"
 metadata/_edit_horizontal_guides_ = [-122.0]
 
@@ -123,6 +125,8 @@ autoplay = "RESET"
 [node name="Effetti" parent="GUI" instance=ExtResource("8_qlv1k")]
 
 [node name="UI" parent="GUI" instance=ExtResource("9_3arwc")]
+
+[node name="GameMenu" parent="GUI" instance=ExtResource("11_vnu8v")]
 
 [connection signal="ready" from="." to="GUI/UI" method="_on_base_livello_ready"]
 [connection signal="cambia_livello" from="2D/Player" to="." method="_on_player_cambia_livello" flags=6]

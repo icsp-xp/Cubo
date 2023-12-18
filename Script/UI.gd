@@ -1,7 +1,6 @@
 extends Control #UI
 
 @onready var h_box_container_scudi = $MarginContainerScudi/HBoxContainer as HBoxContainer
-@onready var transition_menu = $Menu/TransitionMenu as AnimationPlayer
 @onready var label_num_chiavi = $MarginContainerChiavi/HBoxContainer/NumChiavi as Label
 
 var numero_icone_scudo : int
@@ -18,10 +17,6 @@ func _ready() -> void:
 
 func _on_player_presa_chiave():
 	label_num_chiavi.text = str(ScriptGlobale.numero_corrente_di_chiavi)
-
-
-func _on_player_perso() -> void:
-	transition_menu.play("MostraMenu")
 
 
 func _on_player_danneggiato() -> void:

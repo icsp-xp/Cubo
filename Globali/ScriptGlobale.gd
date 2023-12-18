@@ -3,6 +3,7 @@ extends Node # ScriptGlobale
 var numero_corrente_di_chiavi : int
 var numero_corrente_di_scudi : int
 
+var ultimo_livello_sbloccato : int = 1
 
 # -- file salvataggio --
 

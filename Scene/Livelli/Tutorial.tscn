@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dcopv01aorh0p"]
+[gd_scene load_steps=17 format=3 uid="uid://dcopv01aorh0p"]
 
 [ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_dltmu"]
 [ext_resource type="TileSet" uid="uid://b3oplcqw8uw7r" path="res://Resource/TileMap.tres" id="2_plmuh"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b0457tdkr07ah" path="res://Scene/Effetti.tscn" id="8_1io54"]
 [ext_resource type="PackedScene" uid="uid://dx7jgkuntpghv" path="res://Scene/UI.tscn" id="9_jfg68"]
 [ext_resource type="LabelSettings" uid="uid://cwnk2tdjvk7qw" path="res://Assets/Risorse/LabelSettings.tres" id="9_ycfe5"]
+[ext_resource type="PackedScene" uid="uid://cagbspo3f0ok0" path="res://Scene/GameMenu.tscn" id="12_1ueet"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqga7"]
 size = Vector2(80, 650)
@@ -181,6 +182,8 @@ autowrap_mode = 2
 [node name="Effetti" parent="GUI" instance=ExtResource("8_1io54")]
 
 [node name="UI" parent="GUI" instance=ExtResource("9_jfg68")]
+
+[node name="GameMenu" parent="GUI" instance=ExtResource("12_1ueet")]
 
 [connection signal="ready" from="." to="GUI/UI" method="_on_base_livello_ready"]
 [connection signal="cambia_livello" from="2D/Player" to="." method="_on_player_cambia_livello" flags=6]

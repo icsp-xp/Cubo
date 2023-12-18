@@ -1,0 +1,173 @@
+[gd_scene load_steps=6 format=3 uid="uid://cagbspo3f0ok0"]
+
+[ext_resource type="Script" path="res://Script/GameMenu.gd" id="1_pnl6f"]
+
+[sub_resource type="Animation" id="Animation_7tpii"]
+resource_name = "MenuIn"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.588235)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vcxlq"]
+resource_name = "MenuOut"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.588235), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fgkcq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_im5ji"]
+_data = {
+"MenuIn": SubResource("Animation_7tpii"),
+"MenuOut": SubResource("Animation_vcxlq"),
+"RESET": SubResource("Animation_fgkcq")
+}
+
+[node name="GameMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pnl6f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="ButtonContinue" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Continue"
+
+[node name="ButtonMainMenu" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Main Menu"
+
+[node name="ButtonReload" type="Button" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Reload"
+
+[node name="AnimationMenu" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_im5ji")
+}
+autoplay = "RESET"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="ButtonPause" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(64, 42)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Pause"
+
+[connection signal="button_up" from="CenterContainer/VBoxContainer/ButtonContinue" to="." method="_on_button_continue_button_up"]
+[connection signal="button_up" from="CenterContainer/VBoxContainer/ButtonMainMenu" to="." method="_on_button_main_menu_button_up"]
+[connection signal="button_up" from="CenterContainer/VBoxContainer/ButtonReload" to="." method="_on_button_reload_button_up"]
+[connection signal="button_up" from="MarginContainer/ButtonPause" to="." method="_on_button_pause_up"]

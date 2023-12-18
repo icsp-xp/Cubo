@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctb88ivhf3ib7"]
+[gd_scene load_steps=16 format=3 uid="uid://ctb88ivhf3ib7"]
 
 [ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_vrreg"]
 [ext_resource type="AudioStream" uid="uid://cwo7nigbnbnfi" path="res://Assets/Sfx/ProssimoLivello.wav" id="2_77qd7"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b0457tdkr07ah" path="res://Scene/Effetti.tscn" id="8_siakl"]
 [ext_resource type="PackedScene" uid="uid://dx7jgkuntpghv" path="res://Scene/UI.tscn" id="9_sab8k"]
 [ext_resource type="Script" path="res://Script/Camera.gd" id="11_6pkct"]
+[ext_resource type="PackedScene" uid="uid://cagbspo3f0ok0" path="res://Scene/GameMenu.tscn" id="11_jqeeo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqga7"]
 size = Vector2(80, 650)
@@ -123,13 +124,14 @@ autoplay = "RESET"
 
 [node name="UI" parent="GUI" instance=ExtResource("9_sab8k")]
 
+[node name="GameMenu" parent="GUI" instance=ExtResource("11_jqeeo")]
+
 [connection signal="ready" from="." to="GUI/UI" method="_on_base_livello_ready"]
 [connection signal="cambia_livello" from="2D/Player" to="." method="_on_player_cambia_livello" flags=6]
 [connection signal="danneggiato" from="2D/Player" to="2D/Camera2D" method="_on_player_danneggiato"]
 [connection signal="danneggiato" from="2D/Player" to="GUI/Effetti" method="_on_player_danneggiato"]
 [connection signal="danneggiato" from="2D/Player" to="GUI/UI" method="_on_player_danneggiato"]
 [connection signal="perso" from="2D/Player" to="." method="_on_player_perso"]
-[connection signal="perso" from="2D/Player" to="GUI/UI" method="_on_player_perso"]
 [connection signal="presa_chiave" from="2D/Player" to="2D/Uscita" method="_on_player_presa_chiave"]
 [connection signal="presa_chiave" from="2D/Player" to="GUI/UI" method="_on_player_presa_chiave"]
 [connection signal="chiavi_prese" from="2D/Uscita" to="2D/Camera2D" method="_on_uscita_chiavi_prese"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcopv01aorh0p"]
+[gd_scene load_steps=18 format=3 uid="uid://dcopv01aorh0p"]
 
 [ext_resource type="Script" path="res://Script/BaseLevel.gd" id="1_dltmu"]
+[ext_resource type="AudioStream" uid="uid://b2d1jktuyn30e" path="res://Assets/Sfx/GameMusic.wav" id="2_hy04n"]
 [ext_resource type="TileSet" uid="uid://b3oplcqw8uw7r" path="res://Resource/TileMap.tres" id="2_plmuh"]
 [ext_resource type="PackedScene" uid="uid://d288xrkdmpbre" path="res://Scene/Player.tscn" id="3_tpfn3"]
 [ext_resource type="PackedScene" uid="uid://ceedvsppgb5cr" path="res://Scene/Paletti.tscn" id="4_juor3"]
@@ -60,6 +61,11 @@ script = ExtResource("1_dltmu")
 ID = 0
 prossimo_livello = "res://Scene/MainMenu.tscn"
 metadata/_edit_horizontal_guides_ = [-122.0]
+
+[node name="AudioMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_hy04n")
+volume_db = -22.0
+autoplay = true
 
 [node name="2D" type="Node2D" parent="."]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2do6w01g1bkb"]
+[gd_scene load_steps=8 format=3 uid="uid://c2do6w01g1bkb"]
 
 [ext_resource type="Script" path="res://Script/MainMenu.gd" id="1_1f1wd"]
 [ext_resource type="Texture2D" uid="uid://dr8yuttgtd5t6" path="res://Assets/Background.png" id="1_chd8p"]
+[ext_resource type="AudioStream" uid="uid://cqo7jd8yl71rb" path="res://Assets/Sfx/MainMenuMusic.wav" id="2_h3gqx"]
 
 [sub_resource type="Animation" id="Animation_8skc5"]
 resource_name = "In"
@@ -105,6 +106,12 @@ livelli_menu = "res://Scene/LivelliMenu.tscn"
 tutorial = "res://Scene/Livelli/Tutorial.tscn"
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
+
+[node name="AudioMusicMainMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_h3gqx")
+volume_db = -10.0
+autoplay = true
+bus = &"Musica"
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

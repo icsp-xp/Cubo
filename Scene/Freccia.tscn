@@ -19,9 +19,11 @@ shape = SubResource("RectangleShape2D_2t5rr")
 texture = ExtResource("2_4kow6")
 
 [node name="Ombra" type="Sprite2D" parent="Sprite2D"]
-self_modulate = Color(1, 1, 1, 0.117647)
+self_modulate = Color(1, 1, 1, 0.313726)
 show_behind_parent = true
+position = Vector2(0, 30)
 texture = ExtResource("1_xdk4n")
+flip_h = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

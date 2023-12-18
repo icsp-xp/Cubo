@@ -7,6 +7,7 @@ extends StaticBody2D #Arco
 
 @onready var contenitore_frecce = $ContenitoreFrecce as Node
 @onready var animation_player = $AnimationPlayer as AnimationPlayer
+@onready var freccia = $Sprite2D/Freccia as Sprite2D
 
 
 var animazioni : Array[String] = ["SparaDestra", "SparaSotto", "SparaSinistra", "SparaSopra"]

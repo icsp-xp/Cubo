@@ -21,3 +21,9 @@ func prendi_config_file(config_file_path : String) -> ConfigFile:
 		return null
 	
 	return config
+
+
+func _ready() -> void:
+	# Crea la cartella se non esiste
+	if not DirAccess.dir_exists_absolute("user://CuboSaves"):
+		DirAccess.make_dir_absolute("user://CuboSaves")

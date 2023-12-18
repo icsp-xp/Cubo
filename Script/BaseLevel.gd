@@ -3,7 +3,7 @@ extends Node #main
 class_name BaseLevel
 
 @export_category("Propietà")
-@export var ID : int = 1 # default value
+@export var ID : int = 1 # default value. 0 ignora salvatggio
 @export var numero_chiavi_nel_livello : int = 3
 @export var prossimo_livello : String = ""
 
@@ -11,10 +11,13 @@ class_name BaseLevel
 
 
 var config_file : ConfigFile = ConfigFile.new()
-var path_salvataggio : String = "res://Salvataggi/DatiLivelli.cfg"
+var path_salvataggio : String = "user://CuboSaves/DatiLivelli.cfg"
 
 
 func salva_dati_livello() -> void:
+	if ID == 0:
+		return
+		
 	ScriptGlobale.ultimo_livello_sbloccato = max(ID, ScriptGlobale.ultimo_livello_sbloccato)
 	config_file.set_value("livello", "id_ultimo_livello_sbloccato", ScriptGlobale.ultimo_livello_sbloccato)
 	

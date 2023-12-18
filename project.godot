@@ -29,7 +29,6 @@ window/stretch/mode="canvas_items"
 [file_customization]
 
 folder_colors={
-"res://Salvataggi/": "gray",
 "res://Scene/Livelli/": "yellow"
 }
 

@@ -13,8 +13,8 @@ extends Control # MainMuenu
 @onready var button_sfx = $Settings/Control/VBoxContainer2/ButtonSFX as Button
 
 
-var config_file : ConfigFile = ConfigFile.new()
-var path_salvataggio : String = "res://Salvataggi/DatiMainMenu.cfg"
+var config_file : ConfigFile = ConfigFile.new() as ConfigFile
+var path_salvataggio : String = "user://CuboSaves/DatiMainMenu.cfg"
 
 
 func  _ready() -> void:

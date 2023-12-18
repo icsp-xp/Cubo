@@ -57,6 +57,7 @@ _data = {
 [node name="Tutorial" type="Node"]
 process_mode = 1
 script = ExtResource("1_dltmu")
+ID = 0
 prossimo_livello = "res://Scene/MainMenu.tscn"
 metadata/_edit_horizontal_guides_ = [-122.0]
 

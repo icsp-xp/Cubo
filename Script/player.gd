@@ -13,6 +13,7 @@ signal cambia_livello()
 @export var tempo_rotazione : float = 0.1
 
 @export_category("Propietà Player")
+@export_enum("destra", "sotto", "sinistra", "sopra") var direzione_iniziale : int = 0
 @export var numero_di_scudi : int = 3
 @export var tempo_invulnerabilita : float = 2.0
 
@@ -37,6 +38,10 @@ var collide_con_muro : bool = false
 
 
 func _ready() -> void:
+	indice_direzione = direzione_iniziale
+	indicatore_direzione.rotation_degrees = direzione_iniziale * 90
+	area_controllo.rotation_degrees = direzione_iniziale * 90
+	
 	ScriptGlobale.numero_corrente_di_scudi = numero_di_scudi
 	area_controllo.get_node("CollisionShape2D").position.x += dimensione_celle
 

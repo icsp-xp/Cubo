@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcnxn0toy0agf"]
+
+[ext_resource type="Script" path="res://Script/Freccia.gd" id="1_in8pc"]
+[ext_resource type="Texture2D" uid="uid://cfr8acvqe3p2j" path="res://Assets/Arco/OmbraFreccia.png" id="1_xdk4n"]
+[ext_resource type="Texture2D" uid="uid://djbjk6wh1xk6j" path="res://Assets/Arco/FrecciaDestra.png" id="2_4kow6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t5rr"]
+size = Vector2(9, 9)
+
+[node name="Freccia" type="Area2D" groups=["danneggia"]]
+z_index = 1
+script = ExtResource("1_in8pc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(23, 0)
+shape = SubResource("RectangleShape2D_2t5rr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4kow6")
+
+[node name="Ombra" type="Sprite2D" parent="Sprite2D"]
+self_modulate = Color(1, 1, 1, 0.117647)
+show_behind_parent = true
+texture = ExtResource("1_xdk4n")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

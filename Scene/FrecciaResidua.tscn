@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt3mpwreoxutd"]
+
+[ext_resource type="Script" path="res://Script/FrecciaResidua.gd" id="1_0w0il"]
+[ext_resource type="Texture2D" uid="uid://djbjk6wh1xk6j" path="res://Assets/Arco/FrecciaDestra.png" id="1_s8ij7"]
+
+[node name="FrecciaResidua" type="Sprite2D"]
+texture = ExtResource("1_s8ij7")
+script = ExtResource("1_0w0il")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

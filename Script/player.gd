@@ -28,6 +28,8 @@ signal cambia_livello()
 @onready var audio_passo = $AudioPasso as AudioStreamPlayer
 @onready var audio_danno = $AudioDanno as AudioStreamPlayer
 
+@onready var sprite_sopra = $SpriteSopra as Marker2D
+
 
 var direzioni : Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 var indice_direzione : int = 0
@@ -116,13 +118,22 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("danneggia"):
-		var paletto : Paletto = area
-		
-		if ScriptGlobale.numero_corrente_di_scudi - paletto.DANNO >= 0:
-			ScriptGlobale.numero_corrente_di_scudi -= paletto.DANNO
+		if ScriptGlobale.numero_corrente_di_scudi - area.DANNO >= 0:
+			ScriptGlobale.numero_corrente_di_scudi -= area.DANNO
 		else:
 			ScriptGlobale.numero_corrente_di_scudi = 0
 			perso.emit()
+			
+		if area.has_method("elimina"):
+			if area is Freccia: # aggiungi freccia attaccata al player
+				var freccia_residua_scena = load("res://Scene/FrecciaResidua.tscn")
+				var nuova_freccia_residua = freccia_residua_scena.instantiate()
+				
+				nuova_freccia_residua.direzione = area.direzione
+				
+				sprite_sopra.add_child(nuova_freccia_residua)
+				
+			area.elimina()
 			
 		audio_danno.play()
 		danneggiato.emit()
@@ -135,7 +146,6 @@ func _on_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(tempo_invulnerabilita).timeout
 		# TODO play scudo out
 		collision_mask = 1
-		
 	elif area.is_in_group("chiave"):
 		var chiave : Chiave = area
 		

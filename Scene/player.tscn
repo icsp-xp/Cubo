@@ -77,6 +77,9 @@ stream = ExtResource("2_rxbn4")
 volume_db = -8.0
 bus = &"Sfx"
 
+[node name="SpriteSopra" type="Marker2D" parent="."]
+gizmo_extents = 50.0
+
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 light_mask = 2
 position = Vector2(0, -5)

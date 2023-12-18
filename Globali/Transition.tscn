@@ -1,14 +1,14 @@
 [gd_scene load_steps=9 format=3 uid="uid://nlf6hgxr7paa"]
 
-[ext_resource type="Shader" path="res://Shader/TransitionMask.gdshader" id="1_c4elj"]
-[ext_resource type="AudioStream" uid="uid://cugwhgayu3ulv" path="res://Assets/Sfx/Transition.mp3" id="1_rb2b6"]
-[ext_resource type="Texture2D" uid="uid://ov8rvg3jrqpk" path="res://Assets/TransitionMak/Mask1.png" id="2_ap5vr"]
+[ext_resource type="AudioStream" uid="uid://cugwhgayu3ulv" path="res://Assets/Sfx/Transition.mp3" id="1_3vuhm"]
+[ext_resource type="Shader" path="res://Shader/TransitionMask.gdshader" id="2_4oqbu"]
+[ext_resource type="Texture2D" uid="uid://ov8rvg3jrqpk" path="res://Assets/TransitionMak/Mask1.png" id="3_70spe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m8lux"]
-shader = ExtResource("1_c4elj")
+shader = ExtResource("2_4oqbu")
 shader_parameter/cutoff = 1.0
 shader_parameter/smooth_size = 0.2
-shader_parameter/mask = ExtResource("2_ap5vr")
+shader_parameter/mask = ExtResource("3_70spe")
 
 [sub_resource type="Animation" id="Animation_68pkv"]
 resource_name = "In"
@@ -142,7 +142,7 @@ process_mode = 3
 layer = 2
 
 [node name="AudioTransition" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_rb2b6")
+stream = ExtResource("1_3vuhm")
 volume_db = -6.0
 pitch_scale = 0.7
 bus = &"Sfx"

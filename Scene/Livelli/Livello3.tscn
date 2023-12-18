@@ -134,7 +134,7 @@ autoplay = "RESET"
 [connection signal="danneggiato" from="2D/Player" to="GUI/Effetti" method="_on_player_danneggiato"]
 [connection signal="danneggiato" from="2D/Player" to="GUI/UI" method="_on_player_danneggiato"]
 [connection signal="perso" from="2D/Player" to="." method="_on_player_perso"]
-[connection signal="perso" from="2D/Player" to="GUI/UI" method="_on_player_perso"]
+[connection signal="perso" from="2D/Player" to="GUI/GameMenu" method="_on_player_perso"]
 [connection signal="presa_chiave" from="2D/Player" to="2D/Uscita" method="_on_player_presa_chiave"]
 [connection signal="presa_chiave" from="2D/Player" to="GUI/UI" method="_on_player_presa_chiave"]
 [connection signal="chiavi_prese" from="2D/Uscita" to="2D/Camera2D" method="_on_uscita_chiavi_prese"]

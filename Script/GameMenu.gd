@@ -3,9 +3,14 @@ extends Control # GameMenu
 @onready var animation_menu = $AnimationMenu as AnimationPlayer
 @onready var button_pause = $MarginContainer/ButtonPause as Button
 @onready var transition = $"/root/Transition" as CanvasLayer
+@onready var button_continue = $CenterContainer/VBoxContainer/ButtonContinue as Button
+@onready var base_livello = $"../.." as Node
 
 
 func _on_player_perso() -> void:
+	button_pause.visible = false
+	button_continue.visible = false
+	
 	animation_menu.play("MenuIn")
 
 
@@ -26,6 +31,8 @@ func _on_button_continue_button_up() -> void:
 func _on_button_main_menu_button_up() -> void:
 	transition.get_node("AnimationTransition").play("In")
 	await transition.get_node("AnimationTransition").animation_finished
+	
+	base_livello.salva_dati_livello()
 	
 	var scena = load("res://Scene/MainMenu.tscn")
 	get_tree().set_pause(false)

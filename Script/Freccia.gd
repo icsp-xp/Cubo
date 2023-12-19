@@ -12,6 +12,7 @@ const DANNO = 1
 @onready var sprite = $Sprite2D as Sprite2D
 @onready var ombra = $Sprite2D/Ombra as Sprite2D
 @onready var collision_shape = $CollisionShape2D as CollisionShape2D
+@onready var audio_colpito = $AudioColpito as AudioStreamPlayer
 
 
 var direzioni : Array = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
@@ -43,9 +44,13 @@ func _physics_process(delta : float) -> void:
 
 
 func elimina() -> void:
-	get_parent().remove_child(self)
-	queue_free()
+	sprite.visible = false
+	audio_colpito.play()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+
+
+func _on_audio_colpito_finished() -> void:
 	queue_free()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ceedvsppgb5cr"]
+[gd_scene load_steps=11 format=3 uid="uid://ceedvsppgb5cr"]
 
 [ext_resource type="Script" path="res://Script/paletti.gd" id="1_h1l5g"]
 [ext_resource type="Texture2D" uid="uid://bm3pihu801aom" path="res://Assets/Paletto/PalettoOmbra.png" id="1_j2vmg"]
+[ext_resource type="AudioStream" uid="uid://cwkcbx32r2kt0" path="res://Assets/Sfx/PalettoSfx.mp3" id="2_gjkpp"]
 [ext_resource type="Texture2D" uid="uid://dgbd6uhabep3o" path="res://Assets/Paletto/PalettoSottoSpriteSheet.png" id="2_rrwv0"]
 [ext_resource type="Texture2D" uid="uid://djjxxpe0d0ctm" path="res://Assets/Paletto/PalettoSopraSpriteSheet.png" id="3_ed37q"]
 
@@ -10,7 +11,7 @@
 [sub_resource type="Animation" id="Animation_cya03"]
 resource_name = "In"
 length = 0.5
-step = 0.05
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -82,6 +83,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioSfx:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.35),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioSfx:pitch_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.1]
 }
 
 [sub_resource type="Animation" id="Animation_ceip6"]
@@ -160,6 +185,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioSfx:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioSfx:pitch_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
 
 [sub_resource type="Animation" id="Animation_hd1oc"]
 length = 0.001
@@ -235,6 +284,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioSfx:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioSfx:pitch_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0y0qw"]
 _data = {
@@ -245,6 +318,10 @@ _data = {
 
 [node name="Paletto" type="Area2D" groups=["danneggia"]]
 script = ExtResource("1_h1l5g")
+
+[node name="AudioSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gjkpp")
+volume_db = -10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_epj2x")

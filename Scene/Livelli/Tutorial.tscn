@@ -87,6 +87,14 @@ direzione_iniziale = 1
 [node name="Paletto" parent="2D/ContenitoreDanneggianti" instance=ExtResource("4_juor3")]
 position = Vector2(680, 520)
 
+[node name="Paletto7" parent="2D/ContenitoreDanneggianti" instance=ExtResource("4_juor3")]
+position = Vector2(760, 360)
+statico = true
+
+[node name="Paletto8" parent="2D/ContenitoreDanneggianti" instance=ExtResource("4_juor3")]
+position = Vector2(600, 360)
+statico = true
+
 [node name="Paletto2" parent="2D/ContenitoreDanneggianti" instance=ExtResource("4_juor3")]
 position = Vector2(680, 600)
 

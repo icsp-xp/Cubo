@@ -15,7 +15,7 @@ signal cambia_livello()
 @export_category("Propietà Player")
 @export_enum("destra", "sotto", "sinistra", "sopra") var direzione_iniziale : int = 0
 @export var numero_di_scudi : int = 3
-@export var tempo_invulnerabilita : float = 2.0
+@export var tempo_invulnerabilita : float = 1.0
 
 
 @onready var animated_sprite = $AnimatedSprite as AnimatedSprite2D
@@ -37,6 +37,7 @@ var indice_direzione : int = 0
 var puo_ruotare : bool = true
 var puo_muovere : bool = true
 var collide_con_muro : bool = false
+var morto : bool = false
 
 
 func _ready() -> void:
@@ -96,8 +97,9 @@ func sposta_player() -> void:
 
 
 func _process(delta : float) -> void:
-	ruota_player()
-	sposta_player()
+	if not morto:
+		ruota_player()
+		sposta_player()
 
 
 func rotazione_finita() -> void:
@@ -153,3 +155,6 @@ func _on_area_entered(area: Area2D) -> void:
 		ScriptGlobale.numero_corrente_di_chiavi -= 1
 		presa_chiave.emit()
 
+
+func _on_perso() -> void:
+	morto = true

@@ -3,6 +3,7 @@ extends Node #main
 class_name BaseLevel
 
 @export_category("Propietà")
+@onready var tempo_prima_di_mostrare_GameMenu : float = 0.5
 @export var ID : int = 1 # default value. 0 ignora salvatggio
 @export var numero_chiavi_nel_livello : int = 3
 @export var prossimo_livello : String = ""
@@ -45,7 +46,7 @@ func _ready() -> void:
 
 func _on_player_perso() -> void:
 	salva_dati_livello()
-	# magari far asperttare che gli effetti e lo shake finiscano
+	await get_tree().create_timer(tempo_prima_di_mostrare_GameMenu).timeout
 	get_tree().set_pause(true)
 
 

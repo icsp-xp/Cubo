@@ -5,7 +5,6 @@ extends Control # Effetti
 
 
 func _on_player_danneggiato() -> void:
-	print("numero scudi corrente: ", ScriptGlobale.numero_corrente_di_scudi)
 	animation_color.play("Danneggiato")
 
 

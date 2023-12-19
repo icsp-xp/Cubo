@@ -29,7 +29,9 @@ window/stretch/mode="canvas_items"
 [file_customization]
 
 folder_colors={
-"res://Scene/Livelli/": "yellow"
+"res://Scene/": "green",
+"res://Scene/Livelli/": "yellow",
+"res://Script/": "teal"
 }
 
 [input]

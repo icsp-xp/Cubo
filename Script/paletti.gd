@@ -3,6 +3,7 @@ extends Area2D #Paletti
 class_name Paletto
 
 @export_category("Parametri Animazione")
+@export var statico : bool = false
 @export var tempo_di_attivazione : float = 1.0
 @export var tempo_da_attivato : float = 1.0
 @export var tempo_da_disattivato : float = 1.0
@@ -13,6 +14,13 @@ const DANNO : int = 1
 @onready var animation_player = $AnimationPlayer as AnimationPlayer
 
 var can_start : bool = true
+
+
+func _ready() -> void:
+	if statico:
+		animation_player.play("In")
+		
+	set_process(not statico)
 
 
 func start() -> void:

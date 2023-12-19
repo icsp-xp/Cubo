@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcnxn0toy0agf"]
+[gd_scene load_steps=6 format=3 uid="uid://bcnxn0toy0agf"]
 
 [ext_resource type="Script" path="res://Script/Freccia.gd" id="1_in8pc"]
 [ext_resource type="Texture2D" uid="uid://cfr8acvqe3p2j" path="res://Assets/Arco/OmbraFreccia.png" id="1_xdk4n"]
 [ext_resource type="Texture2D" uid="uid://djbjk6wh1xk6j" path="res://Assets/Arco/FrecciaDestra.png" id="2_4kow6"]
+[ext_resource type="AudioStream" uid="uid://1sj5nruuyaci" path="res://Assets/Sfx/FrecciaColpisce.mp3" id="2_lkcob"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2t5rr"]
 size = Vector2(9, 9)
@@ -10,6 +11,10 @@ size = Vector2(9, 9)
 [node name="Freccia" type="Area2D" groups=["danneggia"]]
 z_index = 1
 script = ExtResource("1_in8pc")
+
+[node name="AudioColpito" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lkcob")
+volume_db = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(23, 0)
@@ -27,4 +32,5 @@ flip_h = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[connection signal="finished" from="AudioColpito" to="." method="_on_audio_colpito_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

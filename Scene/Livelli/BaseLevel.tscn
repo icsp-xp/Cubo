@@ -88,18 +88,6 @@ position = Vector2(440, 198)
 [node name="Arco" parent="2D/ContenitoreDanneggianti" instance=ExtResource("6_0gysy")]
 position = Vector2(520, 440)
 
-[node name="Arco2" parent="2D/ContenitoreDanneggianti" instance=ExtResource("6_0gysy")]
-position = Vector2(520, 520)
-direzione = 2
-
-[node name="Arco3" parent="2D/ContenitoreDanneggianti" instance=ExtResource("6_0gysy")]
-position = Vector2(440, 360)
-direzione = 3
-
-[node name="Arco4" parent="2D/ContenitoreDanneggianti" instance=ExtResource("6_0gysy")]
-position = Vector2(840, 200)
-direzione = 1
-
 [node name="ContenitoreChiavi" type="Node" parent="2D"]
 
 [node name="Chiave" parent="2D/ContenitoreChiavi" instance=ExtResource("5_p6rt8")]

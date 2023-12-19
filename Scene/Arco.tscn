@@ -505,9 +505,11 @@ script = ExtResource("1_x8b4k")
 [node name="AudioCaricaArco" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_kgxr2")
 volume_db = -10.0
+bus = &"Sfx"
 
 [node name="AudioSparo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_u5gpv")
+bus = &"Sfx"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_fgp0l")

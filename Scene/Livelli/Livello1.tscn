@@ -64,6 +64,7 @@ metadata/_edit_horizontal_guides_ = [-122.0]
 stream = ExtResource("2_ynguh")
 volume_db = -22.0
 autoplay = true
+bus = &"Musica"
 
 [node name="2D" type="Node2D" parent="."]
 

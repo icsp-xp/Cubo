@@ -15,6 +15,7 @@ script = ExtResource("1_in8pc")
 [node name="AudioColpito" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_lkcob")
 volume_db = 10.0
+bus = &"Sfx"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(23, 0)
